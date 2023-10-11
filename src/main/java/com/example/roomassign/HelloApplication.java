@@ -20,6 +20,5 @@ public class HelloApplication extends Application {
     public static void main(String[] args) {
         launch();
         System.out.println("holas");
-        System.out.println("huevos 1");
     }
 }
