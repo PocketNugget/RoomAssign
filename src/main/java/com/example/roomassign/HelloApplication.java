@@ -1,4 +1,4 @@
-package com.example.roomassign.logic;
+package com.example.roomassign;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +18,6 @@ public class HelloApplication extends Application {
     }
 //Holaaaaaa
     public static void main(String[] args) {
-        System.out.println("holas");
         launch();
         System.out.println("holas 12345");
         System.out.println("Holaa");
