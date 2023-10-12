@@ -1,4 +1,4 @@
-package com.example.roomassign;
+package com.example.roomassign.logic;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

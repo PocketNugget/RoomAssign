@@ -3,6 +3,6 @@ module com.example.roomassign {
     requires javafx.fxml;
 
 
-    opens com.example.roomassign to javafx.fxml;
-    exports com.example.roomassign;
+    exports com.example.roomassign.logic;
+    opens com.example.roomassign.logic to javafx.fxml;
 }
