@@ -44,14 +44,20 @@ public class HelloApplication extends Application {
             int capacidadRequerida=30;
         boolean proyector=true;
         String edificio ="HU";
+
+
             Aula aulaAsignada = abb.findClosestAula(capacidadRequerida, proyector, edificio);
 
-            if (aulaAsignada != null) {
-                System.out.println("Aula asignada: " + aulaAsignada.getEdificio());
-                abb.removeAula(aulaAsignada, capacidadRequerida);
-            } else {
-                System.out.println("No se encontró un aula adecuada.");
-            }
+        if (aulaAsignada != null) {
+            System.out.println("Aula asignada: " + aulaAsignada.getEdificio());
+            abb.removeAula(aulaAsignada);
+        } else {
+            System.out.println("No se encontró un aula adecuada.");
+        }
+
+        System.out.println("Árbol restante:");
+        abb.printTree(abb.root);
+
 
 
         launch();
