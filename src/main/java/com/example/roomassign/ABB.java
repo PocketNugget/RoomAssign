@@ -4,11 +4,23 @@ package com.example.roomassign;
 
 class ABB {
 
-    private NodoABB root;
+    NodoABB root;
 
     public void insert(int key, Aula value) {
         root = insertRec(root, key, value);
     }
+
+
+    public void printTree(NodoABB root) {
+        if (root != null) {
+            printTree(root.left);
+            System.out.println("Key: " + root.key + ", Aula: " + root.value.getEdificio());
+            printTree(root.right);
+        }
+    }
+
+    // Resto de tu clase ABB y lógica...
+
 
     private NodoABB insertRec(NodoABB root, int key, Aula value) {
         if (root == null) {
@@ -64,6 +76,7 @@ class ABB {
                 return leftCapacityDiff < rightCapacityDiff ? leftClosest : rightClosest;
             }
         }
+
     }
 
 
@@ -71,35 +84,43 @@ class ABB {
 
 
     public void removeAula(Aula aulaAsignada, int capacity) {
-        root = removeAulaRec(root, capacity);
+        root = removeAulaRec(root, capacity, aulaAsignada);
         System.out.println("El aula " + aulaAsignada.getEdificio() + " ha sido removida");
     }
 
-    private NodoABB removeAulaRec(NodoABB root, int capacity) {
+
+    private NodoABB removeAulaRec(NodoABB root, int capacity, Aula aulaAsignada) {
         if (root == null) {
-            return root;
+            return null;
         }
 
         if (capacity < root.key) {
-            root.left = removeAulaRec(root.left, capacity);
+            root.left = removeAulaRec(root.left, capacity, aulaAsignada);
         } else if (capacity > root.key) {
-            root.right = removeAulaRec(root.right, capacity);
+            root.right = removeAulaRec(root.right, capacity, aulaAsignada);
         } else {
             // Este nodo es el que se debe eliminar
 
-            // Si el nodo tiene un solo hijo o ninguno
-            if (root.left == null) {
-                return root.right;
-            } else if (root.right == null) {
-                return root.left;
-            }
+            // Si el nodo coincide con el aula asignada, se elimina
+            if (root.value == aulaAsignada) {
+                if (root.left == null) {
+                    return root.right;
+                } else if (root.right == null) {
+                    return root.left;
+                }
 
-            // Si el nodo tiene dos hijos, obtener el sucesor in-order (el nodo más pequeño en el subárbol derecho)
-            root.key = minValue(root.right);
-            root.right = removeAulaRec(root.right, root.key);
+                // Si el nodo tiene dos hijos, obtener el sucesor in-order (el nodo más pequeño en el subárbol derecho)
+                root.key = minValue(root.right);
+                root.right = removeAulaRec(root.right, root.key, aulaAsignada);
+            } else {
+                root.left = removeAulaRec(root.left, capacity, aulaAsignada);
+                root.right = removeAulaRec(root.right, capacity, aulaAsignada);
+            }
         }
         return root;
     }
+
+
 
     private int minValue(NodoABB root) {
         int minValue = root.key;
