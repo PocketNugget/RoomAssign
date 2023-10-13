@@ -11,10 +11,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Button?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.roomassign.HelloController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="700.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.roomassign.HelloController">
    <children>
-      <Pane layoutX="560.0" layoutY="-8.0" prefHeight="408.0" prefWidth="40.0" style="-fx-background-color: #00502f;" />
-      <Pane prefHeight="40.0" prefWidth="611.0" style="-fx-background-color: #00502f;">
+      <Pane layoutX="660.0" layoutY="-16.0" prefHeight="486.0" prefWidth="40.0" style="-fx-background-color: #00502f;" />
+      <Pane prefHeight="40.0" prefWidth="713.0" style="-fx-background-color: #00502f;">
          <children>
             <Label layoutX="14.0" layoutY="-1.0" prefHeight="17.0" prefWidth="351.0" text="Registro de Salones" textFill="WHITE">
                <font>
@@ -23,7 +23,7 @@
             </Label>
          </children>
       </Pane>
-      <Pane layoutX="306.0" layoutY="185.0" prefHeight="46.0" prefWidth="200.0" style="-fx-background-color: #f47c20; -fx-background-radius: 8px;">
+      <Pane layoutX="433.0" layoutY="219.0" prefHeight="46.0" prefWidth="200.0" style="-fx-background-color: #f47c20; -fx-background-radius: 8px;">
          <children>
             <Label layoutX="8.0" layoutY="10.0" text="Computadora" textFill="WHITE">
                <font>
@@ -33,7 +33,7 @@
             <RadioButton fx:id="CompTrueOn" layoutX="155.0" layoutY="14.0" mnemonicParsing="false" onAction="#CompTrueOn" />
          </children>
       </Pane>
-      <Pane layoutX="306.0" layoutY="238.0" prefHeight="46.0" prefWidth="200.0" style="-fx-background-color: #f47c20; -fx-background-radius: 8px;">
+      <Pane layoutX="433.0" layoutY="274.0" prefHeight="46.0" prefWidth="200.0" style="-fx-background-color: #f47c20; -fx-background-radius: 8px;">
          <children>
             <Label layoutX="8.0" layoutY="10.0" text="Proyector" textFill="WHITE">
                <font>
@@ -43,12 +43,12 @@
             <RadioButton fx:id="ProyTrue" layoutX="155.0" layoutY="14.0" mnemonicParsing="false" onAction="#ProyTrueOn" />
          </children>
       </Pane>
-      <Button fx:id="Search" layoutX="354.0" layoutY="291.0" mnemonicParsing="false" onAction="#SearchOn" prefHeight="27.0" prefWidth="104.0" style="-fx-background-color: #00502f; -fx-background-radius: 8px;" text="Buscar" textFill="WHITE">
+      <Button fx:id="Search" layoutX="481.0" layoutY="330.0" mnemonicParsing="false" onAction="#SearchOn" prefHeight="27.0" prefWidth="104.0" style="-fx-background-color: #00502f; -fx-background-radius: 8px;" text="Buscar" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Pane layoutX="306.0" layoutY="131.0" prefHeight="46.0" prefWidth="200.0" style="-fx-background-color: #f47c20; -fx-background-radius: 8px;">
+      <Pane layoutX="433.0" layoutY="164.0" prefHeight="46.0" prefWidth="200.0" style="-fx-background-color: #f47c20; -fx-background-radius: 8px;">
          <children>
             <Label layoutX="8.0" layoutY="10.0" text="Estudiantes" textFill="WHITE">
                <font>
@@ -58,20 +58,30 @@
             <TextField fx:id="Estudiantes" layoutX="137.0" layoutY="10.0" onAction="#EstudiantesIn" prefHeight="27.0" prefWidth="49.0" />
          </children>
       </Pane>
-      <Label fx:id="Output" layoutX="23.0" layoutY="354.0" prefHeight="31.0" prefWidth="522.0">
+      <Label fx:id="Output" layoutX="14.0" layoutY="391.0" prefHeight="36.0" prefWidth="616.0">
          <font>
-            <Font name="Arial" size="26.0" />
+            <Font name="Arial" size="30.0" />
          </font>
       </Label>
-      <Label layoutX="306.0" layoutY="88.0" text="Requerimientos:">
+      <Label layoutX="434.0" layoutY="67.0" text="Requerimientos:">
          <font>
             <Font name="Arial Bold" size="25.0" />
          </font>
       </Label>
-      <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="35.0" layoutY="108.0">
+      <ImageView fitHeight="291.0" fitWidth="291.0" layoutX="41.0" layoutY="74.0">
          <image>
             <Image url="@../../../UdlapLogo.png" />
          </image>
       </ImageView>
+      <Pane layoutX="433.0" layoutY="109.0" prefHeight="46.0" prefWidth="200.0" style="-fx-background-color: #f47c20; -fx-background-radius: 8px;">
+         <children>
+            <Label layoutX="8.0" layoutY="10.0" text="Edificio" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="EdificiosL" layoutX="137.0" layoutY="10.0" onDragDetected="#EdificiosLON" prefHeight="27.0" prefWidth="49.0" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
