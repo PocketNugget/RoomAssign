@@ -24,30 +24,51 @@ class ABB {
         return root;
     }
 
-    public Aula findClosestAula(int capacity) {
-        return findClosestAulaRec(root, capacity);
+    public Aula findClosestAula(int capacity, boolean proyector, String edificio) {
+        return findClosestAulaRec(root, capacity, proyector, edificio, null);
     }
 
-    private Aula findClosestAulaRec(NodoABB root, int capacity) {
+    private Aula findClosestAulaRec(NodoABB root, int capacity, boolean proyector, String edificio, String edificioPrefix) {
         if (root == null) {
             return null;
         }
 
-        if (root.value.getCapacidad() >= capacity) {
+        if ((proyector || !proyector && !root.value.tieneProyector()) &&
+                (edificio == null || root.value.getEdificio().startsWith(edificio.substring(0, 2))) &&
+                Math.abs(root.value.getCapacidad() - capacity) <= 5) {
             return root.value;
         }
 
-        Aula leftClosest = findClosestAulaRec(root.left, capacity);
-        Aula rightClosest = findClosestAulaRec(root.right, capacity);
+        Aula leftClosest = findClosestAulaRec(root.left, capacity, proyector, edificio, edificioPrefix);
+        Aula rightClosest = findClosestAulaRec(root.right, capacity, proyector, edificio, edificioPrefix);
+
+        if (edificio != null && leftClosest == null && rightClosest == null) {
+            return null;
+        }
 
         if (leftClosest == null) {
             return rightClosest;
         } else if (rightClosest == null) {
             return leftClosest;
         } else {
-            return Math.abs(capacity - leftClosest.getCapacidad()) < Math.abs(rightClosest.getCapacidad() - capacity) ? leftClosest : rightClosest;
+            int leftCapacityDiff = Math.abs(capacity - leftClosest.getCapacidad());
+            int rightCapacityDiff = Math.abs(rightClosest.getCapacidad() - capacity);
+
+            if (leftCapacityDiff <= 5 && rightCapacityDiff > 5 &&
+                    (edificio == null || leftClosest.getEdificio().startsWith(edificio.substring(0, 2)))) {
+                return leftClosest;
+            } else if (leftCapacityDiff > 5 && rightCapacityDiff <= 5 &&
+                    (edificio == null || rightClosest.getEdificio().startsWith(edificio.substring(0, 2)))) {
+                return rightClosest;
+            } else {
+                return leftCapacityDiff < rightCapacityDiff ? leftClosest : rightClosest;
+            }
         }
     }
+
+
+
+
 
     public void removeAula(Aula aulaAsignada, int capacity) {
         root = removeAulaRec(root, capacity);

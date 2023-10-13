@@ -34,4 +34,12 @@ class Aula {
     public boolean getComputadoras() {
         return computadoras;
     }
+
+    public boolean tieneProyector() {
+        if (proyector){
+            return false;
+        }
+        else
+            return false;
+    }
 }
