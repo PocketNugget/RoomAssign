@@ -64,7 +64,7 @@ public class HelloApplication extends Application {
 
         if (aulaAsignada != null) {
             System.out.println("Aula asignada: " + aulaAsignada.getEdificio());
-            abb.removeAula(aulaAsignada, capacidadRequerida);
+            abb.removeAula(aulaAsignada);
         } else {
             System.out.println("No se encontró un aula adecuada.");
         }

@@ -83,43 +83,45 @@ class ABB {
 
 
 
-    public void removeAula(Aula aulaAsignada, int capacity) {
-        root = removeAulaRec(root, capacity, aulaAsignada);
-        System.out.println("El aula " + aulaAsignada.getEdificio() + " ha sido removida");
-    }
-
-
-    private NodoABB removeAulaRec(NodoABB root, int capacity, Aula aulaAsignada) {
+    private NodoABB removeAulaRec(NodoABB root, int key) {
         if (root == null) {
             return null;
         }
 
-        if (capacity < root.key) {
-            root.left = removeAulaRec(root.left, capacity, aulaAsignada);
-        } else if (capacity > root.key) {
-            root.right = removeAulaRec(root.right, capacity, aulaAsignada);
+        if (key < root.key) {
+            root.left = removeAulaRec(root.left, key);
+        } else if (key > root.key) {
+            root.right = removeAulaRec(root.right, key);
         } else {
-            // Este nodo es el que se debe eliminar
-
-            // Si el nodo coincide con el aula asignada, se elimina
-            if (root.value == aulaAsignada) {
-                if (root.left == null) {
-                    return root.right;
-                } else if (root.right == null) {
-                    return root.left;
-                }
-
-                // Si el nodo tiene dos hijos, obtener el sucesor in-order (el nodo más pequeño en el subárbol derecho)
-                root.key = minValue(root.right);
-                root.right = removeAulaRec(root.right, root.key, aulaAsignada);
-            } else {
-                root.left = removeAulaRec(root.left, capacity, aulaAsignada);
-                root.right = removeAulaRec(root.right, capacity, aulaAsignada);
+            // caso para eliminar el nodo con la clave dada
+            if (root.left == null) {
+                return root.right;
+            } else if (root.right == null) {
+                return root.left;
             }
+
+            // Si el nodo tiene dos hijos, obtener el sucesor in-order (el nodo más pequeño en el subárbol derecho)
+            NodoABB minNode = findMinNode(root.right);
+            root.key = minNode.key;
+            root.value = minNode.value;
+            root.right = removeAulaRec(root.right, root.key);
         }
         return root;
     }
 
+    private NodoABB findMinNode(NodoABB node) {
+        NodoABB current = node;
+        while (current.left != null) {
+            current = current.left;
+        }
+        return current;
+    }
+
+    public void removeAula(Aula aulaAsignada) {
+        int rkey=root.value.getCapacidad();
+        root = removeAulaRec(root, rkey);
+        System.out.println("El aula con la capacidad " + rkey + " ha sido removida");
+    }
 
 
     private int minValue(NodoABB root) {
