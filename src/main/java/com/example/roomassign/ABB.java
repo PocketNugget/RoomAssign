@@ -83,17 +83,13 @@ class ABB {
 
 
 
-    private NodoABB removeAulaRec(NodoABB root, int key) {
+    private NodoABB removeAulaRec(NodoABB root, Aula aulaAsignada) {
         if (root == null) {
             return null;
         }
 
-        if (key < root.key) {
-            root.left = removeAulaRec(root.left, key);
-        } else if (key > root.key) {
-            root.right = removeAulaRec(root.right, key);
-        } else {
-            // caso para eliminar el nodo con la clave dada
+        if (root.value == aulaAsignada) {
+            // caso para eliminar el nodo con el valor dado
             if (root.left == null) {
                 return root.right;
             } else if (root.right == null) {
@@ -104,10 +100,15 @@ class ABB {
             NodoABB minNode = findMinNode(root.right);
             root.key = minNode.key;
             root.value = minNode.value;
-            root.right = removeAulaRec(root.right, root.key);
+            root.right = removeAulaRec(root.right, minNode.value);
+        } else {
+            // Continuar la búsqueda en el subárbol izquierdo y derecho
+            root.left = removeAulaRec(root.left, aulaAsignada);
+            root.right = removeAulaRec(root.right, aulaAsignada);
         }
         return root;
     }
+
 
     private NodoABB findMinNode(NodoABB node) {
         NodoABB current = node;
@@ -118,9 +119,9 @@ class ABB {
     }
 
     public void removeAula(Aula aulaAsignada) {
-        int rkey=root.value.getCapacidad();
-        root = removeAulaRec(root, rkey);
-        System.out.println("El aula con la capacidad " + rkey + " ha sido removida");
+        int rkey=aulaAsignada.getCapacidad();
+        root = removeAulaRec(root, aulaAsignada);
+        System.out.println("El aula con la capacidad " + aulaAsignada + " ha sido removida");
     }
 
 
