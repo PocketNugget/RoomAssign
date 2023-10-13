@@ -27,7 +27,7 @@ class ABB {
             return new NodoABB(key, value);
         }
 
-        if (key < root.key) {
+        if (key <= root.key) {
             root.left = insertRec(root.left, key, value);
         } else if (key > root.key) {
             root.right = insertRec(root.right, key, value);
