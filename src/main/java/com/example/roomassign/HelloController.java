@@ -60,7 +60,7 @@ public class HelloController {
     }
     @FXML
     public void SearchOn(ActionEvent actionEvent) {
-        int estudiantes = 20;
+        int estudiantes = Integer.parseInt(Estudiantes.getText());
         String seleccion = (EdificiosL.getValue());
         roomAssigner.assignRooms(seleccion, proyector, estudiantes, computadora);
         System.out.println(roomAssigner.display());
