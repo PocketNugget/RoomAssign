@@ -11,8 +11,8 @@ class Aula {
     public Aula(int capacidad, String edificio, boolean proyector, boolean computadoras) {
         this.capacidad = capacidad;
         this.edificio = edificio;
-        this.proyector = false;
-        this.computadoras = false;
+        this.proyector = proyector;
+        this.computadoras = computadoras;
     }
 
     public int getCapacidad() {
@@ -36,10 +36,10 @@ class Aula {
     }
 
     public boolean tieneProyector() {
-        if (proyector){
-            return false;
-        }
-        else
-            return false;
+        return proyector;
+    }
+
+    public boolean tieneComputadoras() {
+        return computadoras;
     }
 }

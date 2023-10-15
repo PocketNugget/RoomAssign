@@ -5,10 +5,9 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
-import com.example.roomassign.RoomAssigner;
 
 public class HelloController {
+    private final RoomAssigner roomAssigner;
     ObservableList<String> aulas = FXCollections.observableArrayList("AG", "HU", "BI", "CE", "CN", "CI", "SL", "CS", "PU", "IA", "IOS", "LB", "LA", "NE");
 
     @FXML
@@ -19,40 +18,55 @@ public class HelloController {
     private RadioButton CompTrueOn;
     @FXML
     private ChoiceBox<String> EdificiosL; // Añade el tipo de datos (String) entre los <>.
+    @FXML
+    private TextField Estudiantes;
 
-    private boolean proyector = false, computadora = false;
+    public boolean proyector = false, computadora = false, proyvalue = true, compvalue = true;
 
+    private final ABB abb; // Declare abb as a static variable
+
+    public HelloController(){
+        roomAssigner = new RoomAssigner();
+        abb = new ABB();
+
+    }
     @FXML
     public void initialize() {
         EdificiosL.setItems(aulas);
     }
+    public void EstudiantesIn(ActionEvent actionEvent) {
+    }
+
 
     @FXML
     public void CompTrueOn(ActionEvent actionEvent) {
-     computadora= true;
-    }
-
-    @FXML
-    public void SearchOn(ActionEvent actionEvent) {
-        // Aquí puedes obtener la selección del usuario
-        String seleccion = EdificiosL.getValue();
-        if (seleccion != null) {
-            System.out.println("Seleccionaste: " + seleccion);
+        if(compvalue){
+            computadora = true;
+            compvalue = false;
+        }else {
+            computadora = false;
+            compvalue = true;
         }
 
     }
-
-    @FXML
     public void ProyTrueOn(ActionEvent actionEvent) {
-        proyector = true;
+        if(proyvalue){
+            proyector = true;
+            proyvalue = false;
+        }else {
+            proyector = false;
+            proyvalue = true;
+        }
+    }
+    @FXML
+    public void SearchOn(ActionEvent actionEvent) {
+        int estudiantes = 20;
+        String seleccion = (EdificiosL.getValue());
+        roomAssigner.assignRooms(seleccion, proyector, estudiantes, computadora);
+        System.out.println(roomAssigner.display());
+        Output.setText(roomAssigner.display());
     }
 
-    @FXML
-    public void EstudiantesIn(ActionEvent actionEvent) {
-        String estudiantes = ((TextField) actionEvent.getSource()).getText();
-    }
 
-    @FXML
-    public void EdificiosLON(MouseEvent mouseEvent) {
-    }
+
 }

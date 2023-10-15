@@ -20,46 +20,6 @@ public class HelloApplication extends Application {
 //Holaaaaaa
     public static void main(String[] args) {
 
-        System.out.println("holas 12345");
-        System.out.println("Holaa gobe");
-
-
-
-
-            ABB abb = new ABB();
-
-            // Insertar algunas aulas con diferentes capacidades y detalles
-
-
-
-        //agregar logica para buscar salon con proyector y/o computadora
-
-
-
-
-
-
-
-            // Buscar y asignar un aula para una clase con 25 estudiantes
-            int capacidadRequerida=30;
-        boolean proyector=true;
-        String edificio ="HU";
-
-
-            Aula aulaAsignada = abb.findClosestAula(capacidadRequerida, proyector, edificio);
-
-        if (aulaAsignada != null) {
-            System.out.println("Aula asignada: " + aulaAsignada.getEdificio());
-            abb.removeAula(aulaAsignada);
-        } else {
-            System.out.println("No se encontró un aula adecuada.");
-        }
-
-        System.out.println("Árbol restante:");
-        abb.printTree(abb.root);
-
-
-
         launch();
         }
 
